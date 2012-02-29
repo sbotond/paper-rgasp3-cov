@@ -27,13 +27,13 @@ HUMAN_BAMS		=$(shell find $(DATA_DIR) -name "LID*.bam")
 MOUSE_BAMS		=$(shell find $(DATA_DIR) -name "mouse*.bam")
 
 parse_sim: $(SIM_BAMS)
-	@./annostat -s $(SIM_PICK) -g $(HUMAN_ANNOT) $(SIM_BAMS)
+	@for bam in $(SIM_BAMS);do ./annostat -d $(SIM_PICK) -g $(HUMAN_ANNOT) $$bam; done
 
 parse_human: $(HUMAN_BAMS)
-	@./annostat -s -g $(HUMAN_ANNOT) $(HUMAN_BAMS)
+	@for bam in $(SIM_BAMS);do ./annostat -s -d $(HUMAN_PICK) -g $(HUMAN_ANNOT) $$bam; done
 
 parse_mouse: $(MOUSE_BAMS)
-	@./annostat -s $(MOUSE_PICK) -g $(MOUSE_ANNOT) $(MOUSE_BAMS)
+	@for bam in $(MOUSE_BAMS);do ./annostat -d $(MOUSE_PICK) -g $(MOUSE_ANNOT) $$bam; done
 
 t:
 	./annostat  -s -d $(TEST_DIR) -g $(TEST_ANNOT) $(TEST_BAM) 

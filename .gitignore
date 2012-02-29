@@ -2,4 +2,6 @@ Attic
 .Rhistory
 tools
 *.pk
-test
+covstat
+statvis
+t

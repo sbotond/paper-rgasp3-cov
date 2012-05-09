@@ -23,7 +23,4 @@ statvis: lib/* src_statvis.py
 com:
 	@git commit -a
 
-push:
-	@git push --all
-
 include analysis.mk

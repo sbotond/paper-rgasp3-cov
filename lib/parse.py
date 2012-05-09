@@ -1,6 +1,6 @@
 
 class Parse:
-    """ Class gathering coverage statistics """
+    """ Class for parsing alignments and gathering coverage statistics """
     def __init__(self, bam, annot, pdir, log):
         self.annot      = annot
         self.stranded   = self.annot['stranded']
@@ -133,6 +133,8 @@ class Parse:
             ref_iv  = op.ref_iv
             if aln.pe_which not in ("first", "second"):
                 self.log.fatal("Illegal pe_which attribute %s for %s" % (aln.pe_which, aln)) 
+            # NOTE: invert the strand for the first read in stranded mode.
+            # This is specific to the RGASP3 human datasets.
             if self.stranded and aln.pe_which == "first":
                 ref_iv = self.invert_strand(ref_iv)
             ivs.add( ref_iv )

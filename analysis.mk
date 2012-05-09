@@ -27,7 +27,6 @@ MOUSE_ANNOT		=$(REF_DIR)/Mus_musculus.NCBIM37.62.gtf.gz
 MOUSE_ANNOT_PICK=$(PICKLE_DIR)/annot/mouse_annot.pk
 MOUSE_SIZES		=$(REF_DIR)/mm9.sizes
 
-#SIM_BAMS		=$(shell find $(BAM_DIR_LS) -name "sim*.bam")
 SIM_BAMS		=$(shell find $(BAM_DIR_LS) -name "sim*.bam")
 HUMAN_BAMS		=$(shell find $(BAM_DIR_LS) -name "LID*.bam")
 MOUSE_BAMS		=$(shell find $(BAM_DIR_LS) -name "mouse*.bam")

@@ -95,7 +95,7 @@ plot_mouse: $(MOUSE_PICK) tools
 plot_vs: plot_sim plot_mouse plot_human plot_human_stranded
 
 plot_cross: tools
-	@bin/statvis -r $(PLOT_DIR)/cross_plots.pdf -vc cross_plots.tab -m config/style/shapes.tab -c config/style/colors.tab $(ALL_PICKS)
+	@bin/statvis -r $(PLOT_DIR)/cross_plots.pdf -vc config/cross_plots.tab -m config/style/shapes.tab -c config/style/colors.tab $(ALL_PICKS)
 
 PC_ARGS	= -vp config/pc_plots.tab -m config/style/shapes.tab -c config/style/colors.tab
 

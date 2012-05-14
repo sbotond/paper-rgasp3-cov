@@ -20,3 +20,11 @@ exon    prim    LID8465 LID8465_stranded
 exon    prim    LID8466 LID8466_stranded
 exon    prim    LID8556 LID8556_stranded
 exon    prim    LID8557 LID8557_stranded
+exon    prim    LID16627 LID8556
+exon    prim    LID16627 LID8557
+exon    prim    LID16627 LID8465
+exon    prim    LID16627 LID8466
+exon    prim    LID16628 LID8556
+exon    prim    LID16628 LID8557
+exon    prim    LID16628 LID8465
+exon    prim    LID16628 LID8466

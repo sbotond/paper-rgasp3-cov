@@ -5,26 +5,33 @@ class Vis:
         self.log    = log
         self.report = report
         self.cmap   = self.parse_cfile(cfile) 
-        self.smap   = self.parse_sfile(sfile) 
+        self.smap   = self.parse_sfile(sfile, self.cmap) 
         self.stats  = stats
 
     def parse_cfile(self, cfile):
-        """ Parse color file """
-        res = {}
-        col_conv    = colors.ColorConverter()
+        """ Parse style file """
+        res = OrderedDict()
         for l in file(cfile):
-            group, hex   = l.split()
-            res[group]      = col_conv.to_rgb(hex)
-        return res 
+            if l.startswith('#'):
+                continue
+            id, lty, pch    = l.strip().split("\t")
+            res[id] = pch
+        return res
 
-    def parse_sfile(self, cfile):
-        """ Parse shape file """
+    def parse_sfile(self, cfile, shape_map):
+        """ Parse methods file """
         res = OrderedDict() 
         for l in file(cfile):
-            t, s    = l.split()
-            if not t in ('1','2','3','4'):
-                self.log.fatal("Invalid submission number %s" % t)
-            res[t]  = s
+            if l.startswith('#'):
+                continue
+            name, team, number, desc, annot, color, style = l.strip().split("\t")
+            res[(team,number)] = {
+                'name': name,
+                'desc': desc,
+                'annot': annot,
+                'color': color,
+                'pch': shape_map[style],
+            }
         return res 
 
     def tab_stat(self, stat, flv='prim'):
@@ -64,13 +71,11 @@ class Vis:
         st  = self._tab_src_cov(types)
 
         dataset = self.stats[0].info['dataset']
-        shapes  = self.subm_to_shapes(st['submissions'])
-        sleg    = self.subm_to_sleg(st['submissions'], ms=8)
-        
-        colors  = self.groups_to_colors(st['groups'])
-        cleg    = self.groups_to_cleg(st['groups'])
+        shapes  = self.subm_to_shapes(zip(st['groups'],st['submissions']))
+        sleg    = self.subm_to_sleg(zip(st['groups'],st['submissions']), ms=4)
+        colors  = self.subm_to_colors(zip(st['groups'],st['submissions']))
 
-        self.report.scatter_plot(x=st['x'], y=st['y'], area=ms, xticks=st['xticks'], colors=colors, shapes=shapes, xlab="Feature types", ylab="Coverage", title="Proper feature coverage by type (%s)" % dataset, cleg=cleg, sleg=sleg, fontsize=8, xtr=80)
+        self.report.scatter_plot(x=st['x'], y=st['y'], area=ms, xticks=st['xticks'], colors=colors, shapes=shapes, xlab="Feature types", ylab="Coverage", title="Proper feature coverage by type (%s)" % dataset, sleg=sleg, fontsize=8, xtr=80)
 
     def plot_src_vs(self, src_type, stat, ms=80):
         """ Create versus plots """
@@ -81,16 +86,14 @@ class Vis:
         x     = ss['data']
         y     = st['y']
         dataset = self.stats[0].info['dataset']
-        shapes  = self.subm_to_shapes(st['submissions'])
-        sleg    = self.subm_to_sleg(st['submissions'], ms=8)
-        
-        colors  = self.groups_to_colors(st['groups'])
-        cleg    = self.groups_to_cleg(st['groups'])
+        shapes  = self.subm_to_shapes(zip(st['groups'],st['submissions']))
+        sleg    = self.subm_to_sleg(zip(st['groups'],st['submissions']), ms=4)
+        colors  = self.subm_to_colors(zip(st['groups'],st['submissions']))
 
         xlab    = ss['desc']
         ylab    = "Total proper %s hits (primary)" % src_type
 
-        self.report.scatter_plot(x=x, y=y, area=ms, colors=colors, shapes=shapes, xlab=xlab, ylab=ylab, title=dataset, cleg=cleg, sleg=sleg, fontsize=8, xtr=80,cline=True)
+        self.report.scatter_plot(x=x, y=y, area=ms, colors=colors, shapes=shapes, xlab=xlab, ylab=ylab, title=dataset, sleg=sleg, fontsize=8, xtr=80,cline=True)
 
 
     def _tab_src_cov(self, types):
@@ -148,41 +151,29 @@ class Vis:
         groups  = gx
         if tuple(lx) != tuple(ly):
             self.log.fatal("vs_plot: labels mismatch")
-        shapes  = self.subm_to_shapes(lx)
-        sleg    = self.subm_to_sleg(lx, ms=8)
-        
-        colors  = self.groups_to_colors(groups)
-        cleg    = self.groups_to_cleg(groups)
+        shapes  = self.subm_to_shapes(zip(gx,lx))
+        colors  = self.subm_to_colors(zip(gx,lx))
+        sleg    = self.subm_to_sleg(zip(gx,lx), ms=4)
 
-        self.report.scatter_plot(x=x, y=y, area=ms, colors=colors, shapes=shapes, xlab=xlab, ylab=ylab, title=title, cleg=cleg, sleg=sleg, fontsize=8, cline=True)
+        self.report.scatter_plot(x=x, y=y, area=ms, colors=colors, shapes=shapes, xlab=xlab, ylab=ylab, title=title, sleg=sleg, fontsize=8, cline=True)
 
     def subm_to_shapes(self, labels):
         """ Map submissions to shapes """
-        return [ self.smap[x] for x in labels]
+        return [ self.smap[x]['pch'] for x in labels]
 
-    def subm_to_sleg(self, labels, ms):
+    def subm_to_sleg(self, submissions, ms):
         """ Generate submission legend """
-        tmp = sorted(list(set(labels)))
-        res = OrderedDict() 
-        for x in tmp:
-           res[x]   = plt.Line2D([0], [0], marker=self.smap[x], ms=ms, color='black', linestyle='', antialiased=True) 
-        return res
+        res = {}
+        for x in submissions:
+           res[self.smap[x]['name']]   = plt.Line2D([0], [0], marker=self.smap[x]['pch'], ms=ms, color=self.smap[x]['color'], linestyle='', antialiased=True) 
+        res_sorted = OrderedDict()
+        for x in sorted(res.keys()):
+            res_sorted[x] = res[x] 
+        return res_sorted
 
-    def groups_to_colors(self, g):
+    def subm_to_colors(self, g):
         """ Map groups to colors """
-        return [ self.cmap[x] for x in g ] 
-
-    def groups_to_cleg(self, g):
-        """ Generate color legend """
-        res = OrderedDict()
-        tmp = sorted(list(set(g)))
-        for x in tmp:
-            name    = self._descore(x) 
-            res[name]  = matplotlib.patches.Patch(facecolor=self.cmap[x], edgecolor='w') 
-        return res
-
-    def _descore(self, s):
-        return re.sub(r'(lab)|_', '', s)
+        return [ self.smap[x]['color'] for x in g ] 
 
     def _parse_vs_file(self, f):
         res = []
@@ -209,14 +200,12 @@ class Vis:
         y       = d['d2']
         groups  = d['groups']
         submissions = d['submissions']
-        
-        shapes  = self.subm_to_shapes(submissions)
-        sleg    = self.subm_to_sleg(submissions, ms=8)
-        
-        colors  = self.groups_to_colors(groups)
-        cleg    = self.groups_to_cleg(groups)
 
-        self.report.scatter_plot(x=x, y=y, area=ms, colors=colors, shapes=shapes, xlab=xlab, ylab=ylab, title=title, cleg=cleg, sleg=sleg, fontsize=8,cline=True)
+        shapes  = self.subm_to_shapes(zip(groups,submissions))
+        colors  = self.subm_to_colors(zip(groups,submissions))
+        sleg    = self.subm_to_sleg(zip(groups,submissions), ms=4)
+        
+        self.report.scatter_plot(x=x, y=y, area=ms, colors=colors, shapes=shapes, xlab=xlab, ylab=ylab, title=title, sleg=sleg, fontsize=8,cline=True)
 
     def _cross_tabulate(self, stat, flv, s1, s2):
         groups          = []
@@ -261,7 +250,8 @@ class Vis:
 
     def _pc_plot(self, s, p, flv):
         F   = {'prim': '(primary)', 'sec': '(secondary)'}
-        title   =   "%s: %s %s" % (s.info['dataset'], self._descore(s.info['group']), s.info['submission'])
+        #title   =   "%s: %s %s" % (s.info['dataset'], self._descore(s.info['group']), s.info['submission'])
+        title   =   self.smap[(st.info['group'],st.info['submission'])]
         xlab    =   'Log ' + s.valid_stats()[p[0]].lower() + ' ' + F[flv]
         ylab    =   'Log ' + s.valid_stats()[p[1]].lower() + ' ' + F[flv]
         dx      =   s.st[flv][p[0]]

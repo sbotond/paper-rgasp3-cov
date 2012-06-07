@@ -5,8 +5,8 @@ def parse_arguments():
     parser.add_argument('input_files', metavar='input file', type=str, nargs='*',default=None,
                    help='Input pickled stats.')
     parser.add_argument('-r', metavar='report_pdf', type=str, default="statvis.pdf", help='Report PDF.')
-    parser.add_argument('-c', metavar='color_file', type=str, default=None, help='Colors file.', required=True)
-    parser.add_argument('-m', metavar='shape_file', type=str, default=None, help='Shapes file.', required=True)
+    parser.add_argument('-c', metavar='style_file', type=str, default=None, help='Style file.', required=True)
+    parser.add_argument('-m', metavar='methods_file', type=str, default=None, help='Methods file.', required=True)
     parser.add_argument('-t', metavar='title', type=str, default="Dataset", help='Dataset title.')
     parser.add_argument('-vs', metavar='vs_file', type=str, default=None, help='Versus plots file.')
     parser.add_argument('-vc', metavar='cross_file', type=str, default=None, help='Cross plots file.')

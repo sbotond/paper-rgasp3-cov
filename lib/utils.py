@@ -32,7 +32,7 @@ class Report:
         plt.title(title)
         self.pages.savefig(fig)
 
-    def scatter_plot(self, x, y, colors, shapes, xlab="", ylab="", title="", labels=None, cleg=None, sleg=None, area=10, xticks=None, yticks=None, fontsize=8, linewidth=0.5, alpha=0.8, legend_loc='center left', xtr=0, ytr=0, cline=False):
+    def scatter_plot(self, x, y, colors, shapes, xlab="", ylab="", title="", labels=None, sleg=None, area=10, xticks=None, yticks=None, fontsize=8, linewidth=0.5, alpha=0.8, legend_loc='center left', xtr=0, ytr=0, cline=False, plot_leg=False):
         fig = plt.figure()
         ax      = plt.subplot(111)
 
@@ -50,22 +50,21 @@ class Report:
             ax.set_yticks(y)
             ax.set_yticklabels(yticks, rotation=ytr, fontsize='x-small') 
 
-        box = ax.get_position()
-        ax.set_position([box.x0, box.y0, box.width * 0.87, box.height])
 
-        # Merge legends:
-        leg_items = OrderedDict()
-        for k, v in cleg.items(): leg_items[k] = v
-        for k, v in sleg.items(): leg_items[k] = v
+        if plot_leg:
+            box = ax.get_position()
+            ax.set_position([box.x0, box.y0, box.width * 0.87, box.height])
 
-        leg     = ax.legend(leg_items.values(), leg_items.keys(), loc=legend_loc, bbox_to_anchor=(1, 0.5))
-        ltext   = leg.get_texts()
-        plt.setp(ltext, fontsize='small')
+            leg     = ax.legend(sleg.values(), sleg.keys(), loc=legend_loc, bbox_to_anchor=(1, 0.5))
+            ltext   = leg.get_texts()
+            plt.setp(ltext, fontsize='xx-small')
 
         # Print linear regression line:
         if cline:
             slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(np.array(x),np.array(y))
             xs, xe  = float(min(x)), float(max(x))
+            if xs == xe:
+                xs, xe = float(min(x)), float(min(x)) + 100
             cx      = np.arange(xs, xe, (xe - xs)/100)
             cy      = intercept + slope * cx
             plt.plot(cx, cy, 'r-', lw=0.5)

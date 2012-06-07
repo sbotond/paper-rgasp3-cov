@@ -50,7 +50,7 @@ S_HUMAN_PICK_LID8557  = $(shell find $(S_HUMAN_PICK) -name "*-LID8557_*.pk")
 ALL_PICKS	= $(shell find $(S_HUMAN_PICK) $(SIM_PICK) $(HUMAN_PICK) $(MOUSE_PICK) -name "*-*_*.pk")
 
 CLUS			= research-rh6
-PLT_ARGS		= -vs config/vs_plots.tab -m config/style/shapes.tab -c config/style/colors.tab
+PLT_ARGS		= -vs config/vs_plots.tab -m config/style/methods.tab -c config/style/styles.tab
 
 anno_parse: tools
 	bsub -q $(CLUS) "bin/annoparse  -l $(MOUSE_SIZES) -g $(MOUSE_ANNOT)    -p $(MOUSE_ANNOT_PICK)"
@@ -95,9 +95,9 @@ plot_mouse: $(MOUSE_PICK) tools
 plot_vs: plot_sim plot_mouse plot_human plot_human_stranded
 
 plot_cross: tools
-	@bin/statvis -r $(PLOT_DIR)/cross_plots.pdf -vc config/cross_plots.tab -m config/style/shapes.tab -c config/style/colors.tab $(ALL_PICKS)
+	@bin/statvis -r $(PLOT_DIR)/cross_plots.pdf -vc config/cross_plots.tab -m config/style/methods.tab -c config/style/styles.tab $(ALL_PICKS)
 
-PC_ARGS	= -vp config/pc_plots.tab -m config/style/shapes.tab -c config/style/colors.tab
+PC_ARGS	= -vp config/pc_plots.tab -m config/style/methods.tab -c config/style/styles.tab
 
 plot_pc: tools
 	@bin/statvis -r $(PLOT_DIR)/pc_mouse.pdf 	$(PC_ARGS) 	$(MOUSE_PICK)/*

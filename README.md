@@ -17,7 +17,7 @@ This repository contains the pipeline used for gathering and visualising feature
 
 * A UNIX environment with standard [GNU tools](http://www.gnu.org/software/coreutils/manual/) and [make](http://www.gnu.org/software/make)
 * [python](http://www.python.org/) (>= 2.7.1)
-* The modified [HTSeq](http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html) package ([download](https://github.com/sbotond/paper-rgasp3-cov/blob/master/tools/HTSeq-0.5.3p3-rgasp3.tar.gz?raw=true)).
+* A modified version of the [HTSeq](http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html) package ([download](https://github.com/sbotond/paper-rgasp3-cov/blob/master/tools/HTSeq-0.5.3p3-rgasp3.tar.gz?raw=true)).
 * [numpy](http://pypi.python.org/pypi/numpy/) (>= 1.6.1)
 * [matplotlib](http://pypi.python.org/pypi/matplotlib/) (>= 1.1.0)
 * The pipeline uses the Platform LSF workload manager to distribute the analysis between multiple compute nodes.

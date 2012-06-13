@@ -20,6 +20,7 @@ This repository contains the pipeline used for gathering and visualising feature
 * The modified [HTSeq](http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html) package ([download](https://github.com/sbotond/paper-rgasp3-cov/blob/master/tools/HTSeq-0.5.3p3-rgasp3.tar.gz?raw=true)).
 * [numpy](http://pypi.python.org/pypi/numpy/) (>= 1.6.1)
 * [matplotlib](http://pypi.python.org/pypi/matplotlib/) (>= 1.1.0)
+* The pipeline uses the Platform LSF workload manager to distribute the analysis between multiple compute nodes.
 
 ## Building and using the tools
 
@@ -28,7 +29,9 @@ The following tools are being built under *bin/* by issuing *make*:
 ### annoparse
 ```
 usage: annoparse [-h] -g gtf -l chromlens -p pickle_name [-s]
+
 Parse and pickle annotation.
+
 optional arguments:
   -h, --help      show this help message and exit
   -g gtf          Annotation in GFF format.
@@ -36,6 +39,55 @@ optional arguments:
   -p pickle_name  Output pickle file.
   -s              Toggle stranded mode.
 ```
+
+### covstat
+```
+usage: covstat [-h] [-g annot_pickle] [-p pickle_prefix] input file
+
+Harness feature coverage statistics.
+
+positional arguments:
+  input file        Input BAM file.
+
+optional arguments:
+  -h, --help        show this help message and exit
+  -g annot_pickle   Pickled annotation.
+  -p pickle_prefix  Output directory.
+```
+
+### statvis
+```
+usage: statvis [-h] [-r report_pdf] -c color_file -m shape_file [-t title]
+               [-vs vs_file] [-vc cross_file] [-vp pc_file] [-xvs]
+               [input file [input file ...]]
+
+Plot coverage statistics.
+
+positional arguments:
+  input file      Input pickled stats.
+
+optional arguments:
+  -h, --help      show this help message and exit
+  -r report_pdf   Report PDF.
+  -c color_file   Colors file.
+  -m shape_file   Shapes file.
+  -t title        Dataset title.
+  -vs vs_file     Versus plots file.
+  -vc cross_file  Cross plots file.
+  -vp pc_file     Point correlation plots file.
+  -xvs            Report list of valid stats.
+```
+
+## Using the pipeline
+
+After setting the relevant parameters in *analysis.mk*, the pipeline can be run by using the following make targets:
+* **anno_parse** - parse and pickle alignments.
+* **parse_sim** - parse simulated BAM files.
+* **parse_mouse** - parse mouse BAM files.
+* **parse_human** - parse human BAM files.
+* **parse_human_stranded** - parse human BAM files in stranded mode.
+* **plot_vs** - plot selected coverage statistics for all datasets.
+* **plot_cross** - produce cross-dataset plots.
 
 ## Notes
 

@@ -4,6 +4,7 @@ This repository contains the pipeline used for gathering and visualising feature
 
 ## Files
 
+* **bin** - scripts build directory.
 * **config** - files with tab separated fields specifying the style and content of the generated plots.
 * **lib/*.py** - python classes used by the scripts under bin/
 * **plots** - plots output directory.
@@ -19,6 +20,22 @@ This repository contains the pipeline used for gathering and visualising feature
 * The modified [HTSeq](http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html) package ([download](https://github.com/sbotond/paper-rgasp3-cov/blob/master/tools/HTSeq-0.5.3p3-rgasp3.tar.gz?raw=true)).
 * [numpy](http://pypi.python.org/pypi/numpy/) (>= 1.6.1)
 * [matplotlib](http://pypi.python.org/pypi/matplotlib/) (>= 1.1.0)
+
+## Building and using the tools
+
+The following tools are being built under *bin/* by issuing *make*:
+
+### annoparse
+```
+usage: annoparse [-h] -g gtf -l chromlens -p pickle_name [-s]
+Parse and pickle annotation.
+optional arguments:
+  -h, --help      show this help message and exit
+  -g gtf          Annotation in GFF format.
+  -l chromlens    Chromosome list file (lengths ignored).
+  -p pickle_name  Output pickle file.
+  -s              Toggle stranded mode.
+```
 
 ## Notes
 

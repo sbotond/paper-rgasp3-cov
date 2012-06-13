@@ -1,0 +1,28 @@
+#name	team	number	description	used annotation	color	style
+BAGET	Mason_lab	1	BAGET	Yes	#FF7F00	2
+GEM	GEM	2	GEM without annotation	No	#377EB8	1
+GEM A	GEM	3	GEM with annotation	Yes	#377EB8	2
+GEM AJ	GEM	4	GEM with annotation and a less conservative set of de novo junctions	Yes	#377EB8	4
+GEM Aj	GEM	1	GEM with annotation, but without de novo junctions	Yes	#377EB8	5
+GSNAP	Thomas_Wu	1	GSNAP without annotation	No	#00E0D0	1
+GSNAP A	Thomas_Wu	2	GSNAP with annotation	Yes	#00E0D0	2
+GSTRUCT	Thomas_Wu	3	GSTRUCT without annotation	No	#00E0D0	3
+GSTRUCT A	Thomas_Wu	4	GSTRUCT with annotation	Yes	#00E0D0	4
+MapSplice	MapSplice	1	MapSplice without annotation	No	#984EA3	1
+MapSplice A	MapSplice	2	MapSplice with annotation	Yes	#984EA3	2
+PALMapper-MMR	Raetsch_lab	1	PALMapper-MMR without annotation	No	#A65628	1
+PALMapper-MMR A	Raetsch_lab	3	PALMapper-MMR with annotation	Yes	#A65628	2
+PALMapper-QPalma	Raetsch_lab	2	PALMapper-QPalma without annotation	No	#A65628	3
+PALMapper-QPalma A	Raetsch_lab	4	PALMapper-QPalma with annotation	Yes	#A65628	4
+PASS	CRIBI	1	PASS default	No	#E41A1C	1
+PASS F	CRIBI	2	PASS with coverage filter	No	#E41A1C	3
+ReadsMap	Softberry	1	ReadsMap	No	#F781BF	1
+STAR 1	Gingeras_lab	1	STAR 1-pass without annotation	No	#4DAF4A	1
+STAR 1A	Gingeras_lab	3	STAR 1-pass with annotation	Yes	#4DAF4A	2
+STAR 2	Gingeras_lab	2	STAR 2-pass without annotation	No	#4DAF4A	3
+STAR 2A	Gingeras_lab	4	STAR 2-pass with annotation	Yes	#4DAF4A	4
+TopHat 1	TopHat	1	TopHat 1	No	#999999	1
+TopHat 1A	TopHat	2	TopHat 1 with annotation	Yes	#999999	2
+TopHat 2	TopHat	3	TopHat 2	No	#999999	3
+TopHat 2A	TopHat	4	TopHat 2 with annotation	Yes	#999999	4
+t	t	1	Test entry	Yes	#999999	2

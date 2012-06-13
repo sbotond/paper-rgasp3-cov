@@ -80,7 +80,7 @@ optional arguments:
 
 ## Using the pipeline
 
-After setting the relevant parameters in *analysis.mk*, the pipeline can be run by using the following make targets:
+After setting the relevant parameters in *analysis.mk*, the pipeline can be run by calling the following make targets:
 * **anno_parse** - parse and pickle alignments.
 * **parse_sim** - parse simulated BAM files.
 * **parse_mouse** - parse mouse BAM files.

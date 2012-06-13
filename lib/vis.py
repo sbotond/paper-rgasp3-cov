@@ -251,7 +251,7 @@ class Vis:
     def _pc_plot(self, s, p, flv):
         F   = {'prim': '(primary)', 'sec': '(secondary)'}
         #title   =   "%s: %s %s" % (s.info['dataset'], self._descore(s.info['group']), s.info['submission'])
-        title   =   self.smap[(st.info['group'],st.info['submission'])]
+        title   =   self.smap[(s.info['group'],s.info['submission'])]
         xlab    =   'Log ' + s.valid_stats()[p[0]].lower() + ' ' + F[flv]
         ylab    =   'Log ' + s.valid_stats()[p[1]].lower() + ' ' + F[flv]
         dx      =   s.st[flv][p[0]]

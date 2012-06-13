@@ -4,6 +4,14 @@ This repository contains the pipeline used for gathering and visualising feature
 
 ## Files
 
+* **config** - files with tab separated fields specifying the style and content of the generated plots.
+* **lib/*.py** - python classes used by the scripts under bin/
+* **plots** - plots output directory.
+* **tools/HTSeq-0.5.3p3-rgasp3.tar.gz** - the modifed HTSeq python package used by the scripts.
+* **Makefile** - makefile containing utility targets.
+* **analysis.mk** - makefile containing analysis targets.
+* **sr_*.py** - main tool source files.
+
 ## Dependencies
 
 * A UNIX environment with standard [GNU tools](http://www.gnu.org/software/coreutils/manual/) and [make](http://www.gnu.org/software/make)

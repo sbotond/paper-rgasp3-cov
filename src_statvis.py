@@ -52,4 +52,4 @@ if args.vc != None:
 # PC plots:
 if args.vp != None:
     v.pc_plots(args.vp)
-
+R.close()

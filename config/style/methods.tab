@@ -25,4 +25,5 @@ TopHat 1	TopHat	1	TopHat 1	No	#999999	1
 TopHat 1A	TopHat	2	TopHat 1 with annotation	Yes	#999999	2
 TopHat 2	TopHat	3	TopHat 2	No	#999999	3
 TopHat 2A	TopHat	4	TopHat 2 with annotation	Yes	#999999	4
+SMALT	Sanger	1	SMALT   0.5.1	No	#999999	1
 t	t	1	Test entry	Yes	#999999	2

@@ -110,4 +110,4 @@ plot_pc: tools
 	@bin/statvis -r $(PLOT_DIR)/pc_LID8556.pdf 	$(PC_ARGS)	$(HUMAN_PICK_LID8556)
 	@bin/statvis -r $(PLOT_DIR)/pc_LID8557.pdf 	$(PC_ARGS)	$(HUMAN_PICK_LID8557)
 
-plots: plot_vs plot_cross plot_pc
+plots: plot_vs plot_cross 

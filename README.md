@@ -78,6 +78,22 @@ optional arguments:
   -xvs            Report list of valid stats.
 ```
 
+### statdump
+```
+usage: statdump [-h] [-g global_stats_file] [-t tr_stats_file]
+                [input file [input file ...]]
+
+Dump primary alignment statistics.
+
+positional arguments:
+  input file            Input pickled stats.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -g global_stats_file  Global stats file.
+  -t tr_stats_file      Transcripts stats file.
+```
+
 ## Using the pipeline
 
 After setting the relevant parameters in *analysis.mk*, the pipeline can be run by calling the following make targets:
@@ -88,6 +104,7 @@ After setting the relevant parameters in *analysis.mk*, the pipeline can be run 
 * **parse_human_stranded** - parse human BAM files in stranded mode.
 * **plot_vs** - plot selected coverage statistics for all datasets.
 * **plot_cross** - produce cross-dataset plots.
+* **dump** - dump primary alignment statistics to tab separated files.
 
 ## Notes
 

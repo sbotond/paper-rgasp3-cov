@@ -17,8 +17,14 @@ t: covstat annoparse
 tv: statvis
 	@bin/statvis -vs config/vs_plots.tab -m config/style/methods.tab -c config/style/styles.tab -r t/test_report.pdf -t Test t/t-test_stranded_1.pk t/t-test_stranded_1.pk
 
+td: statdump
+	@bin/statdump t/t-test_stranded_1.pk t/t-test_stranded_1.pk
+
 statvis: lib/* src_statvis.py
 	@cat lib/preamble lib/*.py src_statvis.py > bin/statvis; chmod +x bin/statvis
+
+statdump: lib/* src_statdump.py
+	@cat lib/preamble lib/*.py src_statdump.py > bin/statdump; chmod +x bin/statdump
 
 com:
 	@git commit -a

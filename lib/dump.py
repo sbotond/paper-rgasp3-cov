@@ -11,7 +11,6 @@ def dump_global(stats, fname):
     tmp = []
     for st in stats:
         tmp = "%s\t%s\t%s" % (st.info['group'], st.info['dataset'], st.info['submission'])
-        print tmp
         for i in vs.keys():
             tmp +=  "\t%s" % st.stat(i)[0]
         tmp += '\n'
@@ -38,7 +37,7 @@ def print_local_head(stats, fh):
 def dump_local(stats, fname):
     targets = ['exon', 'split_exon', 'part_exon', 'intron']
     for tg in targets:
-        fh      = open(tg + "_" + fname, 'w')
+        fh      = open(fname+'_'+tg+".tab", 'w')
         print_local_head(stats, fh)
         trs, th = get_all_trs(stats, [tg])
         for tr in trs:

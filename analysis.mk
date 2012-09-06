@@ -47,6 +47,9 @@ S_HUMAN_PICK_LID8466  = $(shell find $(S_HUMAN_PICK) -name "*-LID8466_*.pk")
 S_HUMAN_PICK_LID8556  = $(shell find $(S_HUMAN_PICK) -name "*-LID8556_*.pk")
 S_HUMAN_PICK_LID8557  = $(shell find $(S_HUMAN_PICK) -name "*-LID8557_*.pk")
 
+DUMP_DIR_GLOB = $(BASE)/results/dumps/global
+DUMP_DIR_TRS  = $(BASE)/results/dumps/trs_wise
+
 ALL_PICKS	= $(shell find $(S_HUMAN_PICK) $(SIM_PICK) $(HUMAN_PICK) $(MOUSE_PICK) -name "*-*_*.pk")
 
 CLUS			= research-rh6
@@ -111,3 +114,29 @@ plot_pc: tools
 	@bin/statvis -r $(PLOT_DIR)/pc_LID8557.pdf 	$(PC_ARGS)	$(HUMAN_PICK_LID8557)
 
 plots: plot_vs plot_cross 
+
+dump: dump_sim dump_mouse dump_human dump_human_stranded
+
+dump_sim: tools
+	@bin/statdump -g $(DUMP_DIR_GLOB)/sim1.tab -t $(DUMP_DIR_TRS)/sim1 $(SIM1_PICK)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/sim2.tab -t $(DUMP_DIR_TRS)/sim2 $(SIM2_PICK)	
+
+dump_mouse: tools
+	@bin/statdump -g $(DUMP_DIR_GLOB)/mouse.tab -t $(DUMP_DIR_TRS)/mouse $(MOUSE_PICK)	
+
+dump_human: tools
+	@bin/statdump -g $(DUMP_DIR_GLOB)/human_LID16627.tab -t $(DUMP_DIR_TRS)/human_LID16627 $(HUMAN_PICK_LID16627)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/human_LID16628.tab -t $(DUMP_DIR_TRS)/human_LID16628 $(HUMAN_PICK_LID16628)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/human_LID8465.tab -t $(DUMP_DIR_TRS)/human_LID8465 $(HUMAN_PICK_LID8465)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/human_LID8466.tab -t $(DUMP_DIR_TRS)/human_LID8466 $(HUMAN_PICK_LID8466)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/human_LID8556.tab -t $(DUMP_DIR_TRS)/human_LID8556 $(HUMAN_PICK_LID8556)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/human_LID8557.tab -t $(DUMP_DIR_TRS)/human_LID8557 $(HUMAN_PICK_LID8557)	
+	
+dump_human_stranded: tools
+	@bin/statdump -g $(DUMP_DIR_GLOB)/s_human_LID16627.tab -t $(DUMP_DIR_TRS)/s_human_LID16627 $(S_HUMAN_PICK_LID16627)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/s_human_LID16628.tab -t $(DUMP_DIR_TRS)/s_human_LID16628 $(S_HUMAN_PICK_LID16628)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/s_human_LID8465.tab -t $(DUMP_DIR_TRS)/s_human_LID8465 $(S_HUMAN_PICK_LID8465)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/s_human_LID8466.tab -t $(DUMP_DIR_TRS)/s_human_LID8466 $(S_HUMAN_PICK_LID8466)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/s_human_LID8556.tab -t $(DUMP_DIR_TRS)/s_human_LID8556 $(S_HUMAN_PICK_LID8556)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/s_human_LID8557.tab -t $(DUMP_DIR_TRS)/s_human_LID8557 $(S_HUMAN_PICK_LID8557)	
+

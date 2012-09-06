@@ -2,7 +2,7 @@
 
 # Building tools:
 
-tools: annoparse covstat statvis
+tools: annoparse covstat statvis statdump
 
 covstat: lib/* src_covstat.py
 	@cat lib/preamble lib/*.py src_covstat.py > bin/covstat; chmod +x bin/covstat

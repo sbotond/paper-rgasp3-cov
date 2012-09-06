@@ -122,7 +122,7 @@ dump_sim: tools
 	@bin/statdump -g $(DUMP_DIR_GLOB)/sim2.tab -t $(DUMP_DIR_TRS)/sim2 $(SIM2_PICK)	
 
 dump_mouse: tools
-	@bin/statdump -g $(DUMP_DIR_GLOB)/mouse.tab -t $(DUMP_DIR_TRS)/mouse $(MOUSE_PICK)	
+	@bin/statdump -g $(DUMP_DIR_GLOB)/mouse.tab -t $(DUMP_DIR_TRS)/mouse $(MOUSE_PICK)/*
 
 dump_human: tools
 	@bin/statdump -g $(DUMP_DIR_GLOB)/human_LID16627.tab -t $(DUMP_DIR_TRS)/human_LID16627 $(HUMAN_PICK_LID16627)	

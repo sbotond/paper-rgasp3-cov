@@ -1,10 +1,12 @@
 
 def print_head(vs, fh):
+    """ Print global stats header to file handler """
     ids  = "group\tdataset\tsubmission\t" 
     ids  = ids + '\t'.join(map(str,vs.keys())) + "\n"
     fh.write(ids)
 
 def dump_global(stats, fname):
+    """ Dump global alignment statistics """
     fh  = open(fname, 'w')
     vs  = stats[0].valid_stats()
     print_head(vs, fh)
@@ -19,6 +21,7 @@ def dump_global(stats, fname):
     fh.close()
 
 def get_all_trs(stats, targets):
+    """ Get the full set of transcripts across all statistics """
     trs = { }
     th  = defaultdict(dict)
     for tg in targets:
@@ -28,6 +31,7 @@ def get_all_trs(stats, targets):
     return (trs.keys(), th)
 
 def print_local_head(stats, fh):
+    """ Print local stats header to a file handler """
     tmp = ''
     for st in stats:
         tmp  += "\t%s|%s|%s"  % (st.info['group'], st.info['dataset'], st.info['submission'])
@@ -35,6 +39,7 @@ def print_local_head(stats, fh):
     fh.write(tmp)
 
 def dump_local(stats, fname):
+    """ Dump primary alignment statistics (per stat) """
     targets = ['exon', 'split_exon', 'part_exon', 'intron']
     for tg in targets:
         fh      = open(fname+'_'+tg+".tab", 'w')
@@ -45,3 +50,4 @@ def dump_local(stats, fname):
             for st in stats:
                 fh.write("\t%s" % th[st][tg][tr])
             fh.write('\n')
+

@@ -1,4 +1,4 @@
-name	team	number	description	version	color	style
+#name	team	number	description	version	color	style
 BAGET ann	Mason_lab	1	BAGET pipeline, using annotation	Unknown	#FF7F00	2
 GEM ann	GEM	4	GEM with de novo junction discovery and annotation	1.358	#E41A1C	2
 GEM cons	GEM	2	GEM with conservative de novo junction discovery	1.358	#E41A1C	3

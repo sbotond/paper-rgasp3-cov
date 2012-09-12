@@ -55,6 +55,14 @@ ALL_PICKS	= $(shell find $(S_HUMAN_PICK) $(SIM_PICK) $(HUMAN_PICK) $(MOUSE_PICK)
 CLUS			= research-rh6
 PLT_ARGS		= -vs config/vs_plots.tab -m config/style/methods.tab -c config/style/styles.tab
 
+print_bams:
+	@echo Human bams:
+	@for b in $(HUMAN_BAMS); do echo $$b; done
+	@echo Mouse bams:
+	@for b in $(MOUSE_BAMS); do echo $$b; done
+	@echo Simulated bams:
+	@for b in $(SIM_BAMS); do echo $$b; done
+
 anno_parse: tools
 	bsub -q $(CLUS) "bin/annoparse  -l $(MOUSE_SIZES) -g $(MOUSE_ANNOT)    -p $(MOUSE_ANNOT_PICK)"
 	bsub -q $(CLUS) "bin/annoparse  -l $(HUMAN_SIZES) -g $(HUMAN_ANNOT)    -p $(HUMAN_ANNOT_PICK)"

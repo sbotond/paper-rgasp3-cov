@@ -32,7 +32,7 @@ class Report:
         plt.title(title)
         self.pages.savefig(fig)
 
-    def scatter_plot(self, x, y, colors, shapes, xlab="", ylab="", title="", labels=None, sleg=None, area=10, xticks=None, yticks=None, fontsize=8, linewidth=0.5, alpha=0.8, legend_loc='center left', xtr=0, ytr=0, cline=False, plot_leg=False):
+    def scatter_plot(self, x, y, colors, shapes, xlab="", ylab="", title="", labels=None, sleg=None, area=30, xticks=None, yticks=None, fontsize=8, linewidth=0.5, alpha=0.7, legend_loc='center left', xtr=0, ytr=0, cline=False, plot_leg=False):
         fig = plt.figure()
         ax      = plt.subplot(111)
 
@@ -79,9 +79,6 @@ class Report:
 
     def close(self):
         self.pages.close()
-
-    def __del__(self):
-        self.close()
 
 class Log:
     """ Logging utility class """

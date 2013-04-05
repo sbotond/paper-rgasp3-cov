@@ -77,7 +77,7 @@ class Vis:
 
         self.report.scatter_plot(x=st['x'], y=st['y'], area=ms, xticks=st['xticks'], colors=colors, shapes=shapes, xlab="Feature types", ylab="Coverage", title="Proper feature coverage by type (%s)" % dataset, sleg=sleg, fontsize=8, xtr=80)
 
-    def plot_src_vs(self, src_type, stat, ms=80):
+    def plot_src_vs(self, src_type, stat, ms=120):
         """ Create versus plots """
         types = (src_type)
         st  = self._tab_src_cov(types)
@@ -130,7 +130,7 @@ class Vis:
         return xticks[src]
 
     def _plot_vs(self, a, b):
-        ms  =   80 
+        ms  =   120
         ta  =   self.tab_stat(a)
         tb  =   self.tab_stat(b)
 
@@ -190,7 +190,7 @@ class Vis:
         vs  = self._parse_cross_file(f)
         [ self._cross_plot(i) for i in vs ]
 
-    def _cross_plot(self, p, ms=80):
+    def _cross_plot(self, p, ms=120):
         d   = self._cross_tabulate(p[0], p[1], p[2], p[3])
 
         title   = d['desc']

@@ -1,28 +1,30 @@
-#name	team	number	description	used annotation	color	style
-BAGET	Mason_lab	1	BAGET	Yes	#FF7F00	2
-GEM	GEM	2	GEM without annotation	No	#377EB8	1
-GEM A	GEM	3	GEM with annotation	Yes	#377EB8	2
-GEM AJ	GEM	4	GEM with annotation and a less conservative set of de novo junctions	Yes	#377EB8	4
-GEM Aj	GEM	1	GEM with annotation, but without de novo junctions	Yes	#377EB8	5
-GSNAP	Thomas_Wu	1	GSNAP without annotation	No	#00E0D0	1
-GSNAP A	Thomas_Wu	2	GSNAP with annotation	Yes	#00E0D0	2
-GSTRUCT	Thomas_Wu	3	GSTRUCT without annotation	No	#00E0D0	3
-GSTRUCT A	Thomas_Wu	4	GSTRUCT with annotation	Yes	#00E0D0	4
-MapSplice	MapSplice	1	MapSplice without annotation	No	#984EA3	1
-MapSplice A	MapSplice	2	MapSplice with annotation	Yes	#984EA3	2
-PALMapper-MMR	Raetsch_lab	1	PALMapper-MMR without annotation	No	#A65628	1
-PALMapper-MMR A	Raetsch_lab	3	PALMapper-MMR with annotation	Yes	#A65628	2
-PALMapper-QPalma	Raetsch_lab	2	PALMapper-QPalma without annotation	No	#A65628	3
-PALMapper-QPalma A	Raetsch_lab	4	PALMapper-QPalma with annotation	Yes	#A65628	4
-PASS	CRIBI	1	PASS default	No	#E41A1C	1
-PASS F	CRIBI	2	PASS with coverage filter	No	#E41A1C	3
-ReadsMap	Softberry	1	ReadsMap	No	#F781BF	1
-STAR 1	Gingeras_lab	1	STAR 1-pass without annotation	No	#4DAF4A	1
-STAR 1A	Gingeras_lab	3	STAR 1-pass with annotation	Yes	#4DAF4A	2
-STAR 2	Gingeras_lab	2	STAR 2-pass without annotation	No	#4DAF4A	3
-STAR 2A	Gingeras_lab	4	STAR 2-pass with annotation	Yes	#4DAF4A	4
-TopHat 1	TopHat	1	TopHat 1	No	#999999	1
-TopHat 1A	TopHat	2	TopHat 1 with annotation	Yes	#999999	2
-TopHat 2	TopHat	3	TopHat 2	No	#999999	3
-TopHat 2A	TopHat	4	TopHat 2 with annotation	Yes	#999999	4
-t	t	1	Test entry	Yes	#999999	2
+#name	team	number	description	version	color	style
+BAGET ann	Mason_lab	1	BAGET pipeline, using annotation	Unknown	#FF7F00	2
+GEM ann	GEM	4	GEM with de novo junction discovery and annotation	1.358	#E41A1C	2
+GEM cons	GEM	2	GEM with conservative de novo junction discovery	1.358	#E41A1C	3
+GEM cons ann	GEM	3	GEM with conservative de novo junction discovery and annotation	1.358	#E41A1C	4
+GEM strict ann	GEM	1	GEM without de novo junction discovery, but with annotation	1.358	#E41A1C	5
+GSNAP	Thomas_Wu	1	GSNAP	2011-08-15	#00E0D0	1
+GSNAP ann	Thomas_Wu	2	GSNAP with annotation	2011-08-15	#00E0D0	2
+GSTRUCT	Thomas_Wu	3	GSTRUCT	2011-08-15	#00E0D0	3
+GSTRUCT ann	Thomas_Wu	4	GSTRUCT with annotation	2011-08-15	#00E0D0	4
+MapSplice	MapSplice	1	MapSplice	Unreleased (based on 1.15.2)	#984EA3	1
+MapSplice ann	MapSplice	2	MapSplice with annotation	Unreleased (based on 1.15.2)	#984EA3	2
+PALMapper	Raetsch_lab	1	PALMapper with multimapper resolution	Unknown	#A65628	1
+PALMapper ann	Raetsch_lab	3	PALMapper with multimapper resolution and annotation	Unknown	#A65628	2
+PALMapper cons	Raetsch_lab	2	PALMapper with filtering and score optimization	Unknown	#A65628	3
+PALMapper cons ann	Raetsch_lab	4	PALMapper with filtering, score optimization and annotation	Unknown	#A65628	4
+PASS	CRIBI	1	PASS	1.64	#377EB8	1
+PASS cons	CRIBI	2	PASS with coverage filter	1.64	#377EB8	3
+ReadsMap	Softberry	1	ReadsMap	6.0.0	#F781BF	1
+SMALT	Sanger	2	SMALT	0.5.1	#E5C494	1
+SMALT raw	Sanger	1	SMALT	0.5.1	#E5C494	5
+STAR 1-pass	Gingeras_lab	1	STAR 1-pass	1.9	#4DAF4A	1
+STAR 1-pass ann	Gingeras_lab	3	STAR 1-pass with annotation	1.9	#4DAF4A	2
+STAR 2-pass	Gingeras_lab	2	STAR 2-pass	1.9	#4DAF4A	3
+STAR 2-pass ann	Gingeras_lab	4	STAR 2-pass with annotation	1.9	#4DAF4A	4
+TopHat v1	TopHat	1	TopHat version 1.3.2	1.3.2	#A0A0A0	1
+TopHat v1 ann	TopHat	2	TopHat version 1.3.2 with annotation	1.3.2	#A0A0A0	2
+TopHat v2	TopHat	3	TopHat version 2.0.3	2.0.3	#A0A0A0	3
+TopHat v2 ann	TopHat	4	TopHat version 2.0.3 with annotation	2.0.3	#A0A0A0	4
+Truth	Truth	1	Correct alignments from simulator	n.a.	#000000	1

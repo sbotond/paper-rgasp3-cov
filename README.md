@@ -2,6 +2,8 @@
 
 This repository contains the pipeline used for gathering and visualising feature coverage statistics for the [RGASP3](http://www.gencodegenes.org/rgasp/rgasp3.html) project. The pipeline is built around a modified version of the [HTSeq](http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html) package.
 
+**The logic of the pipeline is contained in the `analysis.mk` file, please consult it to see how the tools below are chained together in order to perform the analyses.**
+
 ## Files
 
 * **bin** - scripts build directory.
@@ -97,6 +99,7 @@ optional arguments:
 ## Using the pipeline
 
 After setting the relevant parameters in *analysis.mk*, the pipeline can be run by calling the following make targets:
+
 * **anno_parse** - parse and pickle alignments.
 * **parse_sim** - parse simulated BAM files.
 * **parse_mouse** - parse mouse BAM files.

@@ -4,6 +4,8 @@ exon    genes_exon
 exon    part_exon
 exon    split_exon
 exon    intron
+exon    inter
 part_exon   prop_exon
+part_exon   split_exon
 intron  genes_intron
 genes_exon  genes_intron
